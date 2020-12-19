@@ -76,8 +76,6 @@ io.on("connection", (socket) => {
   // Remove order
   socket.on("delete_item", (arg1) => {
     Order.findByIdAndDelete(arg1, (err, doc) => {
-      console.log(err, doc);
-
       io.sockets.emit("feedback", {
         variant: "success",
         message: "Order Canceled!",
