@@ -99,6 +99,11 @@ io.on("connection", (socket) => {
         variant: "error",
         message: "No Empty Fields!",
       });
+    } else {
+      io.sockets.emit("feedback", {
+        variant: "info",
+        message: "New Order Placed!",
+      });
     }
 
     // Update ingredients for top 5 ingredients
@@ -120,11 +125,6 @@ io.on("connection", (socket) => {
           return io.sockets.emit("feedback", {
             variant: "error",
             message: `Queue Full!`,
-          });
-        } else {
-          io.sockets.emit("feedback", {
-            variant: "info",
-            message: "New Order Placed!",
           });
         }
         if (res.length !== 0) {
